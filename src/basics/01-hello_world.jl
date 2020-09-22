@@ -1,27 +1,37 @@
-# Hello world!!!
-a = "Hello world!"
-println(a)
+# ***** FLOATS and INTS *****
+# x = 3.2     # float
+# y = 3       # int   
+# z = 3.      # float
 
+# println("x: ", typeof(x))
+# println("y: ", typeof(y))
+# println("z: ", typeof(z))
+# println("sum: ", typeof(x + y), " ", x + y)
 
-# defining variables
-x = 4
-y = 3.2
-z = x + y
+# ***** STRINGS and CHARS *****
+# a = 'a'         # char
+# word = "hello"  # string
+# wrong = 'word'
 
+# ***** BOOLEANS *****
+# t = true
+# f = false
+# println(t, " ", typeof(t))
+# println(f, " ", typeof(f))
 
-# different types and values
-println("x type: ", typeof(x), " | value: ", x)
-println("y type: ", typeof(y), " | value: ", y)
-# summation of two different types
-println("z type: ", typeof(z), " | value: ", z)
+# ***** control flow with if, elseif, else *****
+x = -5
+y = 0
 
-# casting float to a string
-msg = "Sum: " * string(z)
-println(msg)
-# showing z is still a float
-println(z)
+if (x > 0) && (y > 0)
+    println("x and y are positive")
+elseif (x < 0) && (y < 0)
+    println("x and y are negative")
+elseif (x > 0) || (y > 0)
+    println("x or y are positive")
+else
+    println("x and y are 0")
+end
 
-# explicitly changing z to the multiplication of x and y
-z = x * y
-println("mult: ", z)
-
+# ***** control flow with ternary operator *****
+x > 0 ? println("x is positive") : println("x is negative")
