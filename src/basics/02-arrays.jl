@@ -2,8 +2,9 @@
 l = []
 
 # pushing values into an empty container
-push!(l, 1, 2, 3)       # pushes a value or a couple values
-append!(l, [4, 5, 6])   # pushes a container
+push!(l, 1)             # push a value 
+push!(l, 2, 3)          # or push a couple values
+append!(l, [4, 5, 6])   # or append a container
 
 # defining an undefined array
 arr1 = Array{Float64}(undef, 1)
