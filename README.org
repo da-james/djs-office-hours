@@ -1,0 +1,5 @@
+#+TITLE: Julia Learning Video Series
+#+AUTHOR: David James
+#+EMAIL: davidabraham@ucla.edu
+
+This is a repository of code scripts typed for my video series.
