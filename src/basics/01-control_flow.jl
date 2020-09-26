@@ -30,8 +30,8 @@ elseif (x < 0) && (y < 0)
 elseif (x > 0) || (y > 0)
     println("x or y are positive")
 else
-    println("x and y are 0")
+    println("x or y are 0")
 end
 
 # ***** control flow with ternary operator *****
-x > 0 ? println("x is positive") : println("x is negative")
+x > 0 ? println("x is positive") : println("x is not positive")
