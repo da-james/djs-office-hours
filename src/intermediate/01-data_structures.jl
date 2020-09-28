@@ -1,7 +1,7 @@
-# Array Containers
-v = Vector{Int64}(undef, 5)
-m = Matrix{Float64}(undef, 3, 4)
-a = Array{Real}(undef, 2, 2, 3)
+# Array Containers                  size
+v = Vector{Int64}(undef, 5)         # 5
+m = Matrix{Float64}(undef, 3, 4)    # 3, 4
+a = Array{Real}(undef, 2, 2, 3)     # 2, 2, 3
 
 # Tuple Containers -- immutable
 t = ("hello", 3, 4.5)
