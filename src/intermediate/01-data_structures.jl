@@ -4,12 +4,12 @@ m = Matrix{Float64}(undef, 3, 4)    # 3, 4
 a = Array{Real}(undef, 2, 2, 3)     # 2, 2, 3
 
 # Tuple Containers -- immutable
-t = ("hello", 3, 4.5)
-nt = (a="world", b=5, c='a')
+t = ("hello", 3, 4.5)               # tuple
+nt = (a="world", b=5, c='a')        # named tuple
 println("keys ", keys(nt))
 println("values ", values(t))
 
-# Dictionary Containers
+# Dictionary Containers -- mutable
 d = Dict('a'=>3.4, "hello"=>t[2], 1=>nt.a)
 println("keys ", keys(d))
 println("values ", values(d))
