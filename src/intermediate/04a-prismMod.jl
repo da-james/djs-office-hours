@@ -1,5 +1,8 @@
+# creating a module
 module Prism_Mod
 
+# exporting a function for aliasing
+# export only works with `using` keyword
 export volume
 
 struct Prism

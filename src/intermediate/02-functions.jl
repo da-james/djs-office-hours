@@ -15,6 +15,7 @@ function main()
     # assignment form function
     c(r::Real) = 2 * π * r
 
+    # print statements
     println(circumference(r))
     println(c(r))
 

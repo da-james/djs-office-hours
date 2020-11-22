@@ -1,10 +1,10 @@
 module Circle_Mod
 
+export Circle_const
+
 mutable struct Circle
     radius
 end
-
-export Circle_const
 
 function Circle_const(r::Real)
     Circle(r)
