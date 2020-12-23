@@ -34,9 +34,8 @@ function main()
 
     a::Float64 = 5.0
 
-    # t = A.Triangle(a, a, a, a, a, a)
-
-    t = B.Triangle{Float64}(a, a, a, a, a, a)
+    t = A.Triangle(a, a, a, a, a, a)
+    # t = B.Triangle{Float64}(a, a, a, a, a, a)
 
 end
 
