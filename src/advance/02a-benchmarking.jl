@@ -13,8 +13,20 @@ end
 
 end # end of module A
 
-
 module B
+
+struct Triangle
+    side1   :: Float64 
+    side2   :: Float64 
+    side3   :: Float64 
+    angle1  :: Float64 
+    angle2  :: Float64 
+    angle3  :: Float64 
+end
+
+end # end of module B
+
+module C 
 
 struct Triangle{T}
     side1   ::  T
@@ -25,17 +37,20 @@ struct Triangle{T}
     angle3  ::  T
 end
 
-end # end of module B
+end # end of module C 
+
 
 using .A
 using .B
+using .C
 
 function main()
 
     a::Float64 = 5.0
 
-    t = A.Triangle(a, a, a, a, a, a)
-    # t = B.Triangle{Float64}(a, a, a, a, a, a)
+    # t = A.Triangle(a, a, a, a, a, a)
+    # t = B.Triangle(a, a, a, a, a, a)
+    t = C.Triangle{Float64}(a, a, a, a, a, a)
 
 end
 
