@@ -1,46 +1,88 @@
 module mod_learn
 
+    ! provides precision for data types
     use iso_fortran_env
 
+    ! artifact of legacy code
     implicit none
 
-    contains
+contains
 
-    function data_types()
-        integer(int64) :: i, k
+    function basics()
+        ! ***** initialize data types
         real(real64) :: a, b
-        complex :: c
-        character(len=12) :: phrase
-        character :: letter
+        integer(int64) :: i, j
+        complex(real64) :: c
+        logical :: basics
+        character(len=12) :: msg
 
-        i = 1
-        k = 4
+        a = 0
+        b = 3
+        i = 4
+        j = 5
+        c = (1,2)
+        basics = .true.
+        msg = "hello world!"
 
-        a = 3
-        b = -4.
+        ! print *, "floats", a, b
+        ! print *, "ints", i, j
+        ! print *, "complex", c%re, c%im
+        ! print *, "bools", basics
+        ! print *, msg
 
-        c = (1, 5)
+        ! ***** control flow
+        ! if(a < 0) then
+        !     print *, "a is negative"
+        ! else if(a > 0) then
+        !     print *, "a is positive"
+        ! else
+        !     print *, "a is zero"
+        ! end if
 
-        phrase = "hello world!"
-        letter = "h"
+        ! ***** do/while loop
+        ! do i = 1,10
+        !     print *, i
+        ! end do
 
-        print *, i, k
-        print *, a, b
-        print *, c
-        print *, phrase
-        print *, letter
+        ! i = 1
+        ! do while(i < 10)
+        !     i = i + 1
+        ! end do
 
-    end function
+        ! arrays
+        ! allocate(darr(i))
+        ! darr(:) = 1
+        ! print *, darr
+        ! darr(3) = 3
+        ! print *, darr
+        ! print *, carr
+        ! carr = [1, 2, 3, 4, 5]
+        ! print *, carr
+
+        ! carr(:,:) = 1
+        ! print *, carr
+
+        ! subroutines
+        print *, i, j
+        call sub_a(a, i, j)
+        print *, i, j
+
+    end function basics
+
+    subroutine sub_a(x, y, z)
+        real(real64), intent(in) :: x
+        integer(int64), intent(inout) :: y, z
+
+        print *, x
+        y = y + 1
+        z = z - 1
+
+    end subroutine sub_a
 
 end module
 
 
-program main
 
-    use mod_learn, only : data_types
 
-    implicit none
-
-    print *, data_types()
-
-end program
+! producing a shared mod file
+! gfortran mod_learn.f90 -o mod_learn.so -shared
