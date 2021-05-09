@@ -46,6 +46,15 @@ function anim()
 
     end
 
+    function hill(ddu, du, u, p, t)
+
+        f = -3/(u[1]^2 + u[2]^2)^1.5
+
+        ddu[1] = u[1]*(f + 3) + 2du[2]
+        ddu[2] = u[2]*f - 2du[1]
+
+    end
+
     t0 = -100.
     t1 = 150.
     tspan = (t0, t1)
@@ -74,11 +83,12 @@ function anim()
     p[2] = mu2
     p[3] = n
 
-    du0 = zeros(2)
-    u0 = zeros(2)
-    u0[1] = 1
+    dv0 = zeros(2)
+    v0 = zeros(2)
+    v0[1] = u0[1]*cos(n*t0) + u0[2]*sin(n*t0)
+    v0[2] = -u0[1]*sin(n*t0) + u0[2]*cos(n*t0)
 
-    probr = SecondOrderODEProblem(rotating, du0, u0, tspan, p, abstol=1e-8, reltol=1e-8)
+    probr = SecondOrderODEProblem(rotating, dv0, v0, tspan, p, abstol=1e-8, reltol=1e-8)
     solr = solve(probr, Tsit5())
 
     n = min(length(soli.t), length(solr.t))
