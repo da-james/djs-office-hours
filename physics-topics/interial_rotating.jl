@@ -73,7 +73,7 @@ function anim()
 
     du0 = zeros(2)
     u0 = zeros(2)
-    u0[1] = 1
+    u0[1] = 0.5
 
     probi = SecondOrderODEProblem(inertial, du0, u0, tspan, p, abstol=1e-8, reltol=1e-8)
     soli = solve(probi, Tsit5())
@@ -91,14 +91,26 @@ function anim()
     probr = SecondOrderODEProblem(rotating, dv0, v0, tspan, p, abstol=1e-8, reltol=1e-8)
     solr = solve(probr, Tsit5())
 
-    n = min(length(soli.t), length(solr.t))
+    dw0 = zeros(2)
+    w0 = zeros(2)
+    w0[1] = v0[1] + 1
+    w0[2] = v0[2]
+
+    probh = SecondOrderODEProblem(hill, dw0, w0, tspan, abstol=1e-8, reltol=1e-8)
+    solh = solve(probr, Tsit5())
+
+    n = min(length(solh.t), length(solr.t))
 
     anim = @animate for i in 1:10:n
 
-        p1 = plot((x1[1], x1[2]), markershape=:o, markercolor="blue", label="planet 1",
+        # p1 = plot((x1[1], x1[2]), markershape=:o, markercolor="blue", label="planet 1",
+        #           legend=:bottomright, framestyle=:zerolines)
+        # p1 = plot!((x2[1], x2[2]), markershape=:o, markercolor="green", label="planet 2")
+        # p1 = threebodyplot!(soli[3,i], soli[4,i], "intertial", (-1.5,1.5), (-1.5,1.5))
+
+        p1 = plot((0, 0), markershape=:o, markercolor="green", label="planet 2",
                   legend=:bottomright, framestyle=:zerolines)
-        p1 = plot!((x2[1], x2[2]), markershape=:o, markercolor="green", label="planet 2")
-        p1 = threebodyplot!(soli[3,i], soli[4,i], "intertial", (-1.5,1.5), (-1.5,1.5))
+        p1 = threebodyplot!(solh[3,i], solh[4,i], "hill", (-1.5,1.5), (-1.5,1.5))
 
         p2 = plot((-mu2, 0), markershape=:o, markercolor="blue",  label="planet 1",
                   legend=:bottomright, framestyle=:zerolines)
