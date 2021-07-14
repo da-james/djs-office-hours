@@ -9,7 +9,6 @@ using DifferentialEquations
     seriestype --> :scatter
     markertype --> :o
     markercolor --> "black"
-    aspect_ratio --> 1
     label --> l
     dpi --> 300
     [x], [y]
@@ -23,7 +22,7 @@ function anim()
         μ2 = p[2,1]
         x1 = p[:,2]
         x2 = p[:,3]
-        
+
         r1 = sqrt((x1[1] - u[1])^2 + (x1[2] - u[2])^2 )
         r2 = sqrt((x2[1] - u[1])^2 + (x2[2] - u[2])^2 )
 
@@ -99,25 +98,25 @@ function anim()
     probh = SecondOrderODEProblem(hill, dw0, w0, tspan, abstol=1e-8, reltol=1e-8)
     solh = solve(probr, Tsit5())
 
-    n = min(length(solh.t), length(solr.t))
+    n = min(length(solh.t), length(solr.t), length(soli.t))
 
     anim = @animate for i in 1:10:n
 
-        # p1 = plot((x1[1], x1[2]), markershape=:o, markercolor="blue", label="planet 1",
-        #           legend=:bottomright, framestyle=:zerolines)
-        # p1 = plot!((x2[1], x2[2]), markershape=:o, markercolor="green", label="planet 2")
-        # p1 = threebodyplot!(soli[3,i], soli[4,i], "intertial", (-1.5,1.5), (-1.5,1.5))
-
-        p1 = plot((0, 0), markershape=:o, markercolor="green", label="planet 2",
+        p1 = plot((x1[1], x1[2]), markershape=:o, markercolor="blue", label="planet 1",
                   legend=:bottomright, framestyle=:zerolines)
-        p1 = threebodyplot!(solh[3,i], solh[4,i], "hill", (-1.5,1.5), (-1.5,1.5))
+        p1 = plot!((x2[1], x2[2]), markershape=:o, markercolor="green", label="planet 2")
+        p1 = threebodyplot!(soli[3,i], soli[4,i], "intertial", (-1.5,1.5), (-1.5,1.5))
 
         p2 = plot((-mu2, 0), markershape=:o, markercolor="blue",  label="planet 1",
                   legend=:bottomright, framestyle=:zerolines)
         p2 = plot!((mu1, 0), markershape=:o, markercolor="green", label="planet 2")
         p2 = threebodyplot!(solr[3,i], solr[4,i], "rotating", (-1, 1), (-1, 1))
 
-        plot(p1, p2, layout=2)
+        p3 = plot((0, 0), markershape=:o, markercolor="green", label="planet 2",
+                  legend=:bottomright, framestyle=:zerolines)
+        p3 = threebodyplot!(solh[3,i], solh[4,i], "hill", (-1.5,1.5), (-1.5,1.5))
+
+        plot(p1, p2, p3, layout=(3,1), size=(800,1600))
     end
 
     gif(anim, "de_anim_15.gif", fps=15)
