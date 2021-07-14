@@ -1,5 +1,11 @@
 program main
 
+  call learning_objs()
+
+end program main
+
+subroutine learning_objs
+
   use iso_fortran_env
 
   use learning_fortran_objs
@@ -27,4 +33,4 @@ program main
 
   ! print *, p%electric_potential(x)
 
-end program main
+end subroutine learning_objs
