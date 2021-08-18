@@ -178,7 +178,7 @@ subroutine integrate()
   call mpi_comm_rank(mpi_comm_world, my_id, ierr)
   call mpi_comm_size(mpi_comm_world, num_procs, ierr)
 
-  if(my_id == 0) then
+  if(my_id == root_process) then
 
      print *, "please enter number of intervals to interpolate:"
      read *, num_intervals
